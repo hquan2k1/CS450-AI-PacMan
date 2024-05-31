@@ -87,32 +87,22 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    visited = set()  #set to keep track of visited states
-    stack = util.Stack()  #stack to store states to be explored
+    visited = set()                                                 # Set to keep track of visited states
+    stack = util.Stack()                                            # Stack to store states to be explored
+    stack.push((problem.getStartState(), []))                       # Push the start state and an empty list of actions
 
-    #push the start state and an empty list of actions
-    stack.push((problem.getStartState(), []))
+    while not stack.isEmpty():                                      # While there are states to explore
+        state, actions = stack.pop()                                # Get the next state and list of actions
+        if problem.isGoalState(state):                              # Check if the current state is the goal state
+            return actions                                          # Return the list of actions if the goal state is reached
+        if state not in visited:                                    # Check if the state hasn't been visited
+            visited.add(state)                                      # Mark the state as visited
+            successors = problem.getSuccessors(state)               # Get the successors of the current state
+            for successor, action, _ in successors:                 # Iterate over the successors             
+                if successor not in visited:                        # Check if the successor has not been visited
+                    stack.push((successor, actions + [action]))     # Push the successor and the updated list of actions
 
-    while not stack.isEmpty():  #while there are states to explore
-        state, actions = stack.pop()  #get the next state and list of actions
-        #check if the current state is the goal state
-        if problem.isGoalState(state):  
-            #return the list of actions if the goal state is reached
-            return actions  
-        #check if the state hasn't been visited
-        if state not in visited:  
-            #mark the state as visited
-            visited.add(state)  
-            #get the successors of the current state
-            successors = problem.getSuccessors(state) 
-            #iterate over the successors
-            for successor, action, _ in successors: 
-                #check if the successor has not been visited
-                if successor not in visited:  
-                    #push the successor and the updated list of actions
-                    stack.push((successor, actions + [action]))  
-    
-    return []  # return an empty list if no solution is found
+    return []                                                       # Return an empty list if no solution is found
 
 def breadthFirstSearch(problem):
     """
