@@ -113,7 +113,7 @@ def breadthFirstSearch(problem):
             for successor, action, stepCost in problem.getSuccessors(state):        # For each successor of the state,
                 queue.push((successor, path + [action]))                            # add the successor and the path to it to the queue
     
-    return []  # Return empty path if no solution is found
+    return []                                                                       # Return empty path if no solution is found
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
