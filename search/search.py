@@ -87,25 +87,28 @@ def depthFirstSearch(problem):
     print("Start's successors:", problem.getSuccessors(problem.getStartState()))
     """
     "*** YOUR CODE HERE ***"
-    #pop the current state and actions from the stack
-        state, actions = stack.pop()  
+    visited = set()  #set to keep track of visited states
+    stack = util.Stack()  #stack to store states to be explored
 
-        #check if the current state is the goal state
-        if problem.isGoalState(state):  
-            #return the list of actions if the goal state is reached
-            return actions  
-        #check if the state hasn't been visited
-        if state not in visited:  
-            #mark the state as visited
-            visited.add(state)  
-            #get the successors of the current state
-            successors = problem.getSuccessors(state) 
-            #iterate over the successors
-            for successor, action, _ in successors: 
-                #check if the successor has not been visited
-                if successor not in visited:  
-                    #push the successor and the updated list of actions
-                    stack.push((successor, actions + [action]))  
+    #pop the current state and actions from the stack
+    state, actions = stack.pop()  
+
+    #check if the current state is the goal state
+    if problem.isGoalState(state):  
+        #return the list of actions if the goal state is reached
+        return actions  
+    #check if the state hasn't been visited
+    if state not in visited:  
+        #mark the state as visited
+        visited.add(state)  
+        #get the successors of the current state
+        successors = problem.getSuccessors(state) 
+        #iterate over the successors
+        for successor, action, _ in successors: 
+            #check if the successor has not been visited
+            if successor not in visited:  
+                #push the successor and the updated list of actions
+                stack.push((successor, actions + [action]))  
     
     return []  # return an empty list if no solution is found
 
