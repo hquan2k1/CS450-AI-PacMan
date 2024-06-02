@@ -132,32 +132,30 @@ def breadthFirstSearch(problem):
 
 def uniformCostSearch(problem):
     """Search the node of least total cost first."""
-    "*** YOUR CODE HERE ***"
-    print("Start:", problem.getStartState())
-    print("Is the start a goal?", problem.isGoalState(problem.getStartState()))
-    print("Start's successors:", problem.getSuccessors(problem.getStartState()))
-    
-    #initialize Priority Queue
-    priorityQueue = util.PriorityQueue()
-    #Push the start state and an empty list of actions to the priority queue
-    priorityQueue.push((problem.getStartState(), []), 0)
-    
-    #Dictionary to keep track of visited costs and states
-    best_cost = {}
+    priorityQueue = util.PriorityQueue()  # initialize Priority Queue
+    priorityQueue.push((problem.getStartState(), []), 0)  # Push the start state and an empty list of actions to the priority queue
+
+    visited = set()  # Set to keep track of visited states
+    best_cost = {}  # Dictionary to keep track of visited costs and states
     best_cost[problem.getStartState()] = 0
-    parent = {}
+    parent = {}  # Dictionary to keep track of parent states
     parent[problem.getStartState()] = None
 
-    while (not priorityQueue.isEmpty()):
+    while not priorityQueue.isEmpty():
         state, actions = priorityQueue.pop()
         if problem.isGoalState(state):
             return actions
-        for successor, action, cost in problem.getSuccessors(state):
-            new_cost = best_cost[state] + cost
-            if (successor not in best_cost or new_cost < best_cost[successor]):
-                best_cost[successor] = new_cost
-                priorityQueue.push((successor, actions + [action]), new_cost)
-                parent[successor] = state
+        if state not in visited:
+            visited.add(state)
+            successors = problem.getSuccessors(state)
+            for successor, action, cost in successors:
+                new_cost = best_cost[state] + cost
+                if successor not in best_cost or new_cost < best_cost[successor]:
+                    best_cost[successor] = new_cost
+                    priorityQueue.push((successor, actions + [action]), new_cost)
+                    parent[successor] = state
+
+    return []
 
 def nullHeuristic(state, problem=None):
     """
