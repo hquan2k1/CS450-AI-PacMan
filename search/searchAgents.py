@@ -288,6 +288,7 @@ class CornersProblem(search.SearchProblem):
         # Please add any code here which you would like to use
         # in initializing the problem
         "*** YOUR CODE HERE ***"
+        
 
     def getStartState(self):
         """
@@ -295,14 +296,17 @@ class CornersProblem(search.SearchProblem):
         space)
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        return (self.startingPosition, self.corners)
 
     def isGoalState(self, state):
         """
         Returns whether this search state is a goal state of the problem.
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        # The state is a goal state if all corners have been visited
+        # In our representation of the state, the corners that have not been visited are the second element of the tuple
+        # So, if the second element of the state tuple is empty, then all corners have been visited and the state is a goal state
+        return len(state[1]) == 0
 
     def getSuccessors(self, state):
         """
@@ -325,6 +329,21 @@ class CornersProblem(search.SearchProblem):
             #   hitsWall = self.walls[nextx][nexty]
 
             "*** YOUR CODE HERE ***"
+            # Extract the current position and corners from the state
+            currentPosition, corners = state
+
+            # Calculate the next position based on the action
+            dx, dy = Actions.directionToVector(action)
+            nextx, nexty = int(currentPosition[0] + dx), int(currentPosition[1] + dy)
+            nextPosition = (nextx, nexty)
+
+            # Check if the next position hits a wall
+            if not self.walls[nextx][nexty]:
+                # If the next position is a corner, remove it from the corners
+                nextCorners = tuple(corner for corner in corners if corner != nextPosition)
+
+                # Add the successor state to the list of successors
+                successors.append(((nextPosition, nextCorners), action, 1))
 
         self._expanded += 1 # DO NOT CHANGE
         return successors
