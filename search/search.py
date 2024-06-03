@@ -131,31 +131,39 @@ def breadthFirstSearch(problem):
     return []                                                                       # Return empty path if no solution is found
 
 def uniformCostSearch(problem):
-    """Search the node of least total cost first."""
-    priorityQueue = util.PriorityQueue()  # initialize Priority Queue
-    priorityQueue.push((problem.getStartState(), []), 0)  # Push the start state and an empty list of actions to the priority queue
+    """
+    Search the node of least total cost first.
 
-    visited = set()  # Set to keep track of visited states
-    best_cost = {}  # Dictionary to keep track of visited costs and states
-    best_cost[problem.getStartState()] = 0
-    parent = {}  # Dictionary to keep track of parent states
-    parent[problem.getStartState()] = None
+    Args:
+        problem: The problem instance to be solved.
 
-    while not priorityQueue.isEmpty():
-        state, actions = priorityQueue.pop()
-        if problem.isGoalState(state):
-            return actions
-        if state not in visited:
-            visited.add(state)
-            successors = problem.getSuccessors(state)
-            for successor, action, cost in successors:
-                new_cost = best_cost[state] + cost
-                if successor not in best_cost or new_cost < best_cost[successor]:
-                    best_cost[successor] = new_cost
-                    priorityQueue.push((successor, actions + [action]), new_cost)
-                    parent[successor] = state
+    Returns:
+        A list of actions that leads to the goal state, or an empty list if no solution is found.
+    """
+    priorityQueue = util.PriorityQueue()                                            # Initialize Priority Queue
+    priorityQueue.push((problem.getStartState(), []), 0)                            # Push the start state and an empty list of actions to the priority queue
 
-    return []
+    visited = set()                                                                 # Set to keep track of visited states
+    best_cost = {}                                                                  # Dictionary to keep track of visited costs and states
+    best_cost[problem.getStartState()] = 0                                          # Initialize the cost of the start state to 0                         
+    parent = {}                                                                     # Dictionary to keep track of parent states
+    parent[problem.getStartState()] = None                                          # Initialize the parent of the start state to None                    
+
+    while not priorityQueue.isEmpty():                                              # While there are states to explore
+        state, actions = priorityQueue.pop()                                        # Get the next state and list of actions
+        if problem.isGoalState(state):                                              # Check if the current state is the goal state                    
+            return actions                                                          # Return the list of actions if the goal state is reached                 
+        if state not in visited:                                                    # Check if the state hasn't been visited, if not    
+            visited.add(state)                                                      # Mark the state as visited       
+            successors = problem.getSuccessors(state)                               # Then, get the successors of the current state
+            for successor, action, cost in successors:                              # Iterate over the successors 
+                new_cost = best_cost[state] + cost                                  # Calculate the new cost
+                if successor not in best_cost or new_cost < best_cost[successor]:   # If the new cost is less than the best cost of the successor
+                    best_cost[successor] = new_cost                                 # Update the best cost of the successor
+                    priorityQueue.push((successor, actions + [action]), new_cost)   # Push the successor and the updated list of actions to the priority queue
+                    parent[successor] = state                                       # Update the parent of the successor
+
+    return []                                                                       # Return an empty list if no solution is found
 
 def nullHeuristic(state, problem=None):
     """
