@@ -175,28 +175,28 @@ def nullHeuristic(state, problem=None):
 def aStarSearch(problem, heuristic=nullHeuristic):
     "Search the node that has the lowest combined cost and heuristic first."
     
-    states = util.PriorityQueue()                                                                 #Creates a priority queue to store the states   
-    start = problem.getStartState()                                                               #Gets the start of the problem
-    states.push((start, []), nullHeuristic(start, problem))                                       #Pushes the start state and the heuristic value of the start state    
-    explored = []                                                                                 #List to hold explored states   
-    cost = 0                                                                                      #Initializes the cost
-    if (problem.isGoalState(start)):                                                              #Checks if the start state is the goal state
-        return []                                                                                 #Returns an empty list if the start state is the goal state
+    states = util.PriorityQueue()                                                                 # Creates a priority queue to store the states   
+    start = problem.getStartState()                                                               # Gets the start of the problem
+    states.push((start, []), nullHeuristic(start, problem))                                       # Pushes the start state and the heuristic value of the start state    
+    explored = []                                                                                 # List to hold explored states   
+    cost = 0                                                                                      # Initializes the cost
+    if (problem.isGoalState(start)):                                                              # Checks if the start state is the goal state
+        return []                                                                                 # Returns an empty list if the start state is the goal state
     while not states.isEmpty():
         state, actions = states.pop()
-        if problem.isGoalState(state):                                                            #Checks if the state is the goal state, returns the actions if it is
+        if problem.isGoalState(state):                                                            # Checks if the state is the goal state, returns the actions if it is
             return actions
-        if state not in explored:                                                                 #Checks if the state hasn't been explored            
-            successors = problem.getSuccessors(state)                                             #Get successors of the current state
-            for x in successors:
+        if state not in explored:                                                                 # Checks if the state hasn't been explored            
+            successors = problem.getSuccessors(state)                                             # Get successors of the current state
+            for x in successors: 
                 coords = x[0]
                 if coords not in explored:
                     directions = x[1]                    
-                    nActions = actions + [directions]                                             #Create a new list of actions by appending the current direction to the existing actions                   
-                    cost = problem.getCostOfActions(nActions) + heuristic(coords, problem)        #Calculate the cost of the new actions by adding the cost of the current actions and the heuristic value of the successor state                   
-                    states.push((coords, actions + [directions]), cost)                           #Push the successor state and the new actions with their cost into the priority queue        
-        explored.append(state)                                                                    #Mark the current state as explored
-    return actions                                                                                #Return the actions if no solution is found                 
+                    nActions = actions + [directions]                                             # Create a new list of actions by appending the current direction to the existing actions                   
+                    cost = problem.getCostOfActions(nActions) + heuristic(coords, problem)        # Calculate the cost of the new actions by adding the cost of the current actions and the heuristic value of the successor state                   
+                    states.push((coords, actions + [directions]), cost)                           # Push the successor state and the new actions with their cost into the priority queue        
+        explored.append(state)                                                                    # Mark the current state as explored
+    return actions                                                                                # Return the actions if no solution is found                 
         
 
 

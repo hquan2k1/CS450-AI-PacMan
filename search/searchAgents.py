@@ -294,6 +294,9 @@ class CornersProblem(search.SearchProblem):
         """
         Returns the start state (in your state space, not the full Pacman state
         space)
+
+        The start state is the starting position of Pacman and the four corners that have not been visited
+        The tuple contains two elements: the first element is the starting position of Pacman, and the second element is the list of corners that have not been visited
         """
         "*** YOUR CODE HERE ***"
         return (self.startingPosition, self.corners)
@@ -301,11 +304,13 @@ class CornersProblem(search.SearchProblem):
     def isGoalState(self, state):
         """
         Returns whether this search state is a goal state of the problem.
+
+        The state is a goal state if all corners have been visited
+        In our representation of the state, the corners that have not been visited are the second element of the tuple
+        So, if the second element of the state tuple is empty, then all corners have been visited and the state is a goal state
         """
         "*** YOUR CODE HERE ***"
-        # The state is a goal state if all corners have been visited
-        # In our representation of the state, the corners that have not been visited are the second element of the tuple
-        # So, if the second element of the state tuple is empty, then all corners have been visited and the state is a goal state
+
         return len(state[1]) == 0
 
     def getSuccessors(self, state):
@@ -329,21 +334,15 @@ class CornersProblem(search.SearchProblem):
             #   hitsWall = self.walls[nextx][nexty]
 
             "*** YOUR CODE HERE ***"
-            # Extract the current position and corners from the state
-            currentPosition, corners = state
+            currentPosition, corners = state                                                    # Extract the current position and corners from the state
 
-            # Calculate the next position based on the action
-            dx, dy = Actions.directionToVector(action)
+            dx, dy = Actions.directionToVector(action)                                          # Calculate the next position based on the action
             nextx, nexty = int(currentPosition[0] + dx), int(currentPosition[1] + dy)
             nextPosition = (nextx, nexty)
 
-            # Check if the next position hits a wall
-            if not self.walls[nextx][nexty]:
-                # If the next position is a corner, remove it from the corners
-                nextCorners = tuple(corner for corner in corners if corner != nextPosition)
-
-                # Add the successor state to the list of successors
-                successors.append(((nextPosition, nextCorners), action, 1))
+            if not self.walls[nextx][nexty]:                                                    # Check if the next position hits a wall
+                nextCorners = tuple(corner for corner in corners if corner != nextPosition)     # If the next position is a corner, remove it from the corners
+                successors.append(((nextPosition, nextCorners), action, 1))                     # Add the successor state to the list of successors
 
         self._expanded += 1 # DO NOT CHANGE
         return successors
