@@ -155,6 +155,10 @@ The Pacman board will show an overlay of the states explored, and the order in w
 
 _Hint:_ If you use a `Stack` as your data structure, the solution found by your DFS algorithm for `mediumMaze` should have a length of 130 (provided you push successors onto the fringe in the order provided by getSuccessors; you might get 246 if you push them in the reverse order). Is this a least cost solution? If not, think about what depth-first search is doing wrong.
 
+> **Depth-First Search bigMaze**
+> Implementation of DFS is found within `search.py`
+> ![image](./Pictures/DFS_Search.gif)
+
 * * *
 
 ### <a name="Q2"></a>Question 2 (3 points): Breadth First Search
@@ -172,6 +176,10 @@ _Hint:_ If Pacman moves too slowly for you, try the option `--frameTime 0`.
 _Note:_ If you've written your search code generically, your code should work equally well for the eight-puzzle search problem without any changes.
 
 `python eightpuzzle.py`
+
+> **Breadth-First Search bigMaze**
+> Implementation of BFS is found within `search.py`
+> ![image](./Pictures/BFS_Search.gif)
 
 * * *
 
@@ -191,6 +199,10 @@ Implement the uniform-cost graph search algorithm in the `uniformCostSearch` fun
 
 _Note:_ You should get very low and very high path costs for the `StayEastSearchAgent` and `StayWestSearchAgent` respectively, due to their exponential cost functions (see `searchAgents.py` for details).
 
+> **Cost Function Search Medium Scary Maze**
+> Implementation of A\* is found within `search.py`
+> ![image](./Pictures/Cost_Function.gif)
+
 * * *
 
 ### <a name="Q4"></a>Question 4 (3 points): A\* search
@@ -202,6 +214,10 @@ You can test your A\* implementation on the original problem of finding a path t
 `python pacman.py -l bigMaze -z .5 -p SearchAgent -a fn=astar,heuristic=manhattanHeuristic`
 
 You should see that A\* finds the optimal solution slightly faster than uniform cost search (about 549 vs. 620 search nodes expanded in our implementation, but ties in priority may make your numbers differ slightly). What happens on `openMaze` for the various search strategies?
+
+> **A\* Search Big Maze**
+> Implementation of A\* is found within `search.py`
+> ![image](./Pictures/A_Search.gif)
 
 * * *
 
