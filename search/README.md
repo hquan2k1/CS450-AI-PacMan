@@ -157,7 +157,7 @@ _Hint:_ If you use a `Stack` as your data structure, the solution found by your 
 
 > **Depth-First Search Big Maze**
 > Implementation is found within `search.py`
-> ![image](./Pictures/DFS_Search.gif)
+> <img src="./Pictures/DFS_Search.gif" alt="drawing" width="50%"/>
 
 * * *
 
@@ -179,7 +179,7 @@ _Note:_ If you've written your search code generically, your code should work eq
 
 > **Breadth-First Search Big Maze**
 > Implementation is found within `search.py`
-> ![image](./Pictures/BFS_Search.gif)
+> <img src="./Pictures/BFS_Search.gif" alt="drawing" width="50%"/>
 
 * * *
 
@@ -201,7 +201,7 @@ _Note:_ You should get very low and very high path costs for the `StayEastSearch
 
 > **Cost Function Search Medium Scary Maze**
 > Implementation is found within `search.py`
-> ![image](./Pictures/Cost_Function.gif)
+> <img src="./Pictures/Cost_Function.gif" alt="drawing" width="50%"/>
 
 * * *
 
@@ -217,7 +217,7 @@ You should see that A\* finds the optimal solution slightly faster than uniform 
 
 > **A\* Search Big Maze**
 > Implementation is found within `search.py`
-> ![image](./Pictures/A_Search.gif)
+> <img src="./Pictures/A_Search.gif" alt="drawing" width="50%"/>
 
 * * *
 
@@ -243,7 +243,7 @@ Our implementation of `breadthFirstSearch` expands just under 2000 search nodes 
 
 > **Finding All Corners (Medium)**
 > Implementation is found within `searchAgents.py`
-> ![image](./Pictures/Corner_Finding.gif)
+> <img src="./Pictures/Corner_Finding.gif" alt="drawing" width="50%"/>
 
 * * *
 
@@ -280,7 +280,7 @@ _Remember:_ If your heuristic is inconsistent, you will receive _no_ credit, so 
 
 > **Heuristic Corner Problem (Medium)**
 > Implementation is found within `searchAgents.py`
-> ![image](./Pictures/Corner_Problem.gif)
+> <img src="./Pictures/Corner_Problem.gif" alt="drawing" width="50%"/>
 
 * * *
 
@@ -316,7 +316,7 @@ _Remember:_ If your heuristic is inconsistent, you will receive _no_ credit, so 
 
 > **Eating All The Dots**
 > Implementation is found within `searchAgents.py`
-> ![image](./Pictures/Tricky_Search.gif)
+> <img src="./Pictures/Tricky_Search.gif" alt="drawing" width="50%"/>
 
 * * *
 
@@ -334,7 +334,7 @@ Your `ClosestDotSearchAgent` won't always find the shortest possible path throug
 
 > **Finding Optimal Path**
 > Implementation is found within `searchAgents.py`
-> ![image](./Pictures/All_Food.gif)
+> <img src="./Pictures/All_Food.gif" alt="drawing" width="50%"/>
 
 * * *
 
