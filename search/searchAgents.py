@@ -510,9 +510,14 @@ def foodHeuristic(state, problem):
     Subsequent calls to this heuristic can access
     problem.heuristicInfo['wallCount']
     """
-    position, foodGrid = state
-    "*** YOUR CODE HERE ***"
-    return 0
+
+    position, foodGrid = state                                                                                 #Extract the pacman position and food grid from the state
+    h, w = problem.walls.height, problem.walls.width                                                           #Get the height and width of the walls grid
+    foodTuple = tuple([(i, j) for j in range(0, h) for i in range(0, w) if foodGrid.data[i][j]])               #Create a tuple of food coordinates from the food grid
+    foodDistances = [mazeDistance(position, food, problem.startingGameState) for food in foodTuple]            #Calculate the distances from the pacman position to each food coordinate
+    return max(foodDistances) if foodDistances else 0                                                          #Return the maximum distance if there are food coordinates, otherwise return 0
+    
+    
 
 class ClosestDotSearchAgent(SearchAgent):
     "Search for all food using a sequence of searches"
