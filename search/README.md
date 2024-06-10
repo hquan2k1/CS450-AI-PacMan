@@ -155,8 +155,8 @@ The Pacman board will show an overlay of the states explored, and the order in w
 
 _Hint:_ If you use a `Stack` as your data structure, the solution found by your DFS algorithm for `mediumMaze` should have a length of 130 (provided you push successors onto the fringe in the order provided by getSuccessors; you might get 246 if you push them in the reverse order). Is this a least cost solution? If not, think about what depth-first search is doing wrong.
 
-> **Depth-First Search bigMaze**
-> Implementation of DFS is found within `search.py`
+> **Depth-First Search Big Maze**
+> Implementation is found within `search.py`
 > ![image](./Pictures/DFS_Search.gif)
 
 * * *
@@ -177,8 +177,8 @@ _Note:_ If you've written your search code generically, your code should work eq
 
 `python eightpuzzle.py`
 
-> **Breadth-First Search bigMaze**
-> Implementation of BFS is found within `search.py`
+> **Breadth-First Search Big Maze**
+> Implementation is found within `search.py`
 > ![image](./Pictures/BFS_Search.gif)
 
 * * *
@@ -200,7 +200,7 @@ Implement the uniform-cost graph search algorithm in the `uniformCostSearch` fun
 _Note:_ You should get very low and very high path costs for the `StayEastSearchAgent` and `StayWestSearchAgent` respectively, due to their exponential cost functions (see `searchAgents.py` for details).
 
 > **Cost Function Search Medium Scary Maze**
-> Implementation of A\* is found within `search.py`
+> Implementation is found within `search.py`
 > ![image](./Pictures/Cost_Function.gif)
 
 * * *
@@ -216,7 +216,7 @@ You can test your A\* implementation on the original problem of finding a path t
 You should see that A\* finds the optimal solution slightly faster than uniform cost search (about 549 vs. 620 search nodes expanded in our implementation, but ties in priority may make your numbers differ slightly). What happens on `openMaze` for the various search strategies?
 
 > **A\* Search Big Maze**
-> Implementation of A\* is found within `search.py`
+> Implementation is found within `search.py`
 > ![image](./Pictures/A_Search.gif)
 
 * * *
@@ -240,6 +240,10 @@ To receive full credit, you need to define an abstract state representation that
 _Hint:_ The only parts of the game state you need to reference in your implementation are the starting Pacman position and the location of the four corners.
 
 Our implementation of `breadthFirstSearch` expands just under 2000 search nodes on `mediumCorners`. However, heuristics (used with A\* search) can reduce the amount of searching required.
+
+> **Finding All Corners (Medium)**
+> Implementation is found within `searchAgents.py`
+> ![image](./Pictures/Corner_Finding.gif)
 
 * * *
 
@@ -273,6 +277,10 @@ Number of nodes expanded
 | at most 1200              |  3/3   |
 
 _Remember:_ If your heuristic is inconsistent, you will receive _no_ credit, so be careful!
+
+> **Heuristic Corner Problem (Medium)**
+> Implementation is found within `searchAgents.py`
+> ![image](./Pictures/Corner_Problem.gif)
 
 * * *
 
@@ -319,6 +327,10 @@ Implement the function `findPathToClosestDot` in `searchAgents.py`. Our agent so
 _Hint:_ The quickest way to complete `findPathToClosestDot` is to fill in the `AnyFoodSearchProblem`, which is missing its goal test. Then, solve that problem with an appropriate search function. The solution should be very short!
 
 Your `ClosestDotSearchAgent` won't always find the shortest possible path through the maze. Make sure you understand why and try to come up with a small example where repeatedly going to the closest dot does not result in finding the shortest path for eating all the dots.
+
+> **Finding Optimal Path**
+> Implementation is found within `searchAgents.py`
+> ![image](./Pictures/All_Food.gif)
 
 * * *
 
