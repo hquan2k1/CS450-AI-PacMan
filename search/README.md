@@ -302,7 +302,7 @@ Any non-trivial non-negative consistent heuristic will receive 1 point. Make sur
 
 _Remember:_ If your heuristic is inconsistent, you will receive _no_ credit, so be careful! Can you solve `mediumSearch` in a short time? If so, we're either very, very impressed, or your heuristic is inconsistent.
 
-<img src="./Pictures/Tricky_Search.gif" width="50%"/>
+<img src="./Pictures/Tricky_search.gif" width="50%"/>
 
 * * *
 
