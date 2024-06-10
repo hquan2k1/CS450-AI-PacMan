@@ -155,9 +155,7 @@ The Pacman board will show an overlay of the states explored, and the order in w
 
 _Hint:_ If you use a `Stack` as your data structure, the solution found by your DFS algorithm for `mediumMaze` should have a length of 130 (provided you push successors onto the fringe in the order provided by getSuccessors; you might get 246 if you push them in the reverse order). Is this a least cost solution? If not, think about what depth-first search is doing wrong.
 
-**Depth-First Search Big Maze**
-Implementation is found within `search.py`
-<img src="./Pictures/DFS_Search.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/DFS_Search.gif" width="50%"/>
 
 * * *
 
@@ -177,9 +175,7 @@ _Note:_ If you've written your search code generically, your code should work eq
 
 `python eightpuzzle.py`
 
-**Breadth-First Search Big Maze**
-Implementation is found within `search.py`
-<img src="./Pictures/BFS_Search.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/BFS_Search.gif" width="50%"/>
 
 * * *
 
@@ -199,9 +195,7 @@ Implement the uniform-cost graph search algorithm in the `uniformCostSearch` fun
 
 _Note:_ You should get very low and very high path costs for the `StayEastSearchAgent` and `StayWestSearchAgent` respectively, due to their exponential cost functions (see `searchAgents.py` for details).
 
-**Cost Function Search Medium Scary Maze**
-Implementation is found within `search.py`
-<img src="./Pictures/Cost_Function.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/Cost_Function.gif" width="50%"/>
 
 * * *
 
@@ -215,9 +209,7 @@ You can test your A\* implementation on the original problem of finding a path t
 
 You should see that A\* finds the optimal solution slightly faster than uniform cost search (about 549 vs. 620 search nodes expanded in our implementation, but ties in priority may make your numbers differ slightly). What happens on `openMaze` for the various search strategies?
 
-**A\* Search Big Maze**
-Implementation is found within `search.py`
-<img src="./Pictures/A_Search.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/A_Search.gif" width="50%"/>
 
 * * *
 
@@ -241,9 +233,7 @@ _Hint:_ The only parts of the game state you need to reference in your implement
 
 Our implementation of `breadthFirstSearch` expands just under 2000 search nodes on `mediumCorners`. However, heuristics (used with A\* search) can reduce the amount of searching required.
 
-**Finding All Corners (Medium)**
-Implementation is found within `searchAgents.py`
-<img src="./Pictures/Corner_Finding.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/Corner_Finding.gif" width="50%"/>
 
 * * *
 
@@ -278,9 +268,7 @@ Number of nodes expanded
 
 _Remember:_ If your heuristic is inconsistent, you will receive _no_ credit, so be careful!
 
-**Heuristic Corner Problem (Medium)**
-Implementation is found within `searchAgents.py`
-<img src="./Pictures/Corner_Problem.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/Corner_Problem.gif" width="50%"/>
 
 * * *
 
@@ -314,9 +302,7 @@ Any non-trivial non-negative consistent heuristic will receive 1 point. Make sur
 
 _Remember:_ If your heuristic is inconsistent, you will receive _no_ credit, so be careful! Can you solve `mediumSearch` in a short time? If so, we're either very, very impressed, or your heuristic is inconsistent.
 
-**Eating All The Dots**
-Implementation is found within `searchAgents.py`
-<img src="./Pictures/Tricky_Search.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/Tricky_Search.gif" width="50%"/>
 
 * * *
 
@@ -332,9 +318,7 @@ _Hint:_ The quickest way to complete `findPathToClosestDot` is to fill in the `A
 
 Your `ClosestDotSearchAgent` won't always find the shortest possible path through the maze. Make sure you understand why and try to come up with a small example where repeatedly going to the closest dot does not result in finding the shortest path for eating all the dots.
 
-**Finding Optimal Path**
-Implementation is found within `searchAgents.py`
-<img src="./Pictures/All_Food.gif" alt="drawing" width="50%"/>
+<img src="./Pictures/All_Food.gif" width="50%"/>
 
 * * *
 
