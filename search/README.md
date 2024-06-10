@@ -314,6 +314,10 @@ Any non-trivial non-negative consistent heuristic will receive 1 point. Make sur
 
 _Remember:_ If your heuristic is inconsistent, you will receive _no_ credit, so be careful! Can you solve `mediumSearch` in a short time? If so, we're either very, very impressed, or your heuristic is inconsistent.
 
+> **Eating All The Dots**
+> Implementation is found within `searchAgents.py`
+> ![image](./Pictures/Tricky_Search.gif)
+
 * * *
 
 ### <a name="Q8"></a> Question 8 (3 points): Suboptimal Search
