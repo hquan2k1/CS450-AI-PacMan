@@ -378,7 +378,47 @@ def cornersHeuristic(state, problem):
     walls = problem.walls # These are the walls of the maze, as a Grid (game.py)
 
     "*** YOUR CODE HERE ***"
-    return 0 # Default to trivial solution
+    # Require goal is to estimate shortest path from CURRENT STATE to GOAL STATE
+    # We can use the Manhattan distance between the current state and the closest corner as a heuristic
+    # We can then add the Manhattan distance between the closest corner and the next closest corner to the heuristic
+    # We can continue this process until we have added the Manhattan distance between all corners to the heuristic
+
+    # Extract the current position and corners from the state using a TUPLE
+    currentPosition, corners = state
+
+    # Initialize total distance to 0
+    totalDistance = 0
+
+    # While there are still corners to visit
+    while corners:
+        # Compute the Manhattan distance between the current position and all corners
+        distances = [util.manhattanDistance(currentPosition, corner) for corner in corners]
+
+        # Find the closest corner
+        minDistance = min(distances)
+        closestCorner = corners[distances.index(minDistance)]
+
+        # Add the Manhattan distance between the current position and the closest corner to the total distance
+        totalDistance += minDistance
+
+        # Update the current position to the closest corner
+        currentPosition = closestCorner
+
+        # Remove the closest corner from the list of corners
+        # Create an empty list to store the corners that are not the closest corner
+        remaining_corners = []
+
+        # Loop through each corner in the corners tuple
+        for corner in corners:
+            # Check if the current corner is not the closest corner
+            if corner != closestCorner:
+                # If it's not the closest corner, add it to the list of remaining corners
+                remaining_corners.append(corner)
+
+        # Convert the list of remaining corners back into a tuple
+        corners = tuple(remaining_corners)
+            
+    return totalDistance
 
 class AStarCornersAgent(SearchAgent):
     "A SearchAgent for FoodSearchProblem using A* and your foodHeuristic"
@@ -503,7 +543,9 @@ class ClosestDotSearchAgent(SearchAgent):
         problem = AnyFoodSearchProblem(gameState)
 
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        # Use the A* search algorithm to find the path to the closest food
+        return search.aStarSearch(problem, search.nullHeuristic)
+    
 
 class AnyFoodSearchProblem(PositionSearchProblem):
     """
@@ -539,7 +581,9 @@ class AnyFoodSearchProblem(PositionSearchProblem):
         x,y = state
 
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        # Check if the current position is a food
+        return self.food[x][y]
+    
 
 def mazeDistance(point1, point2, gameState):
     """
