@@ -74,7 +74,20 @@ class ReflexAgent(Agent):
         newScaredTimes = [ghostState.scaredTimer for ghostState in newGhostStates]
 
         "*** YOUR CODE HERE ***"
-        return successorGameState.getScore()
+        pacman_position = list(successorGameState.getPacmanPosition())                             #Retrieve Pacman's current position as a list
+        minimum_distance = float('inf')                                                            #Initialize the minimum distance to an extremely high value
+        food_positions = currentGameState.getFood().asList()                                       #Get the current state of the food and convert it to a list of food positions
+        for food_pos in food_positions:                                                            #Iterate over each food position to find the closest one to Pacman
+          distance = manhattanDistance(food_pos, pacman_position)
+          if distance < minimum_distance:
+            minimum_distance = distance
+        minimum_distance = -minimum_distance                                                       #Negate the minimum distance
+        for ghost_state in newGhostStates:                                                         #Iterate over each ghost state
+          if ghost_state.scaredTimer == 0 and ghost_state.getPosition() == tuple(pacman_position): #Check if the ghost is not scared and is at Pacman's position
+            return -float('inf')                                                                   #Return a very low value if the ghost is at Pacman's position
+        if action == 'Stop':                                                                       #Check if the action is to stop
+          return -float('inf')                                                                     #Return a very low value if the action is to stop
+        return minimum_distance                                                                    #Return the negated minimum distance
 
 def scoreEvaluationFunction(currentGameState):
     """
