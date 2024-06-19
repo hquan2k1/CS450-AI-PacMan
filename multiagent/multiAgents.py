@@ -89,6 +89,7 @@ class ReflexAgent(Agent):
           return -float('inf')                                                                     #Return a very low value if the action is to stop
         return minimum_distance                                                                    #Return the negated minimum distance
 
+
 def scoreEvaluationFunction(currentGameState):
     """
       This default evaluation function just returns the score of the state.
@@ -142,8 +143,37 @@ class MinimaxAgent(MultiAgentSearchAgent):
             Returns the total number of agents in the game
         """
         "*** YOUR CODE HERE ***"
-        util.raiseNotDefined()
+        def minimax(agent, depth, gameState):
+          if gameState.isLose() or gameState.isWin() or depth == self.depth:                            #Check if the game is over or the maximum depth is reached
+            return self.evaluationFunction(gameState)
+          
+          if agent == 0:                                                                                #maximize for pacman                                                             
+            max_utility = float("-inf")                                                                 #Find the maximum utility by recursively calling minimax for each legal action
+            for new_state in gameState.getLegalActions(agent):                                          #Iterate over all legal actions for Pacman
+              utility = minimax(1, depth, gameState.generateSuccessor(agent, new_state))                #Find the utility for the next agent       
+              max_utility = max(max_utility, utility)                                                   #Update the maximum utility
+            return max_utility                                                                          #Return the maximum utility
+          
+          else:                                                                                         #minimize for ghosts
+            next_agent = agent + 1
+            if gameState.getNumAgents() == next_agent:                                                  #Check if all agents have played          
+              next_agent = 0                                                                            #Reset the agent to Pacman        
+              depth += 1                                                                                #Increment the depth        
+            min_utility = float("inf")                                                                  #Find the minimum utility by recursively calling minimax for each legal action
+            for new_state in gameState.getLegalActions(agent):                                          #Iterate over all legal actions for the ghost
+              utility = minimax(next_agent, depth, gameState.generateSuccessor(agent, new_state))       #Find the utility for the next agent
+              min_utility = min(min_utility, utility)                                                   #Update the minimum utility
+            return min_utility                                                                          #Return the minimum utility
+        maximum = float("-inf")                                                                         #Initialize the maximum utility to an extremely low value
+        action = Directions.WEST                                                                        #Initialize the action to a random direction
+        for agent_state in gameState.getLegalActions(0):                                               
+          utility = minimax(1, 0, gameState.generateSuccessor(0, agent_state))                          #Find the utility for each legal action
+          if utility > maximum or maximum == float("-inf"):                                             #Update the maximum utility and action
+            maximum = utility 
+            action = agent_state 
 
+        return action                                                                                   #Return the action with the maximum utility
+    
 class AlphaBetaAgent(MultiAgentSearchAgent):
     """
       Your minimax agent with alpha-beta pruning (question 3)
